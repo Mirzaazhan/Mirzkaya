@@ -67,6 +67,45 @@ function formatMYR(amount: number) {
 
 const emptyForm = { name: '', type: 'Bank' as AccountType, current_value: '' }
 
+function AccountForm({ f, setF }: { f: typeof emptyForm; setF: (v: typeof emptyForm) => void }) {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-1.5">
+        <Label className="text-xs text-muted-foreground">Account Name</Label>
+        <Input
+          placeholder="e.g. Maybank Savings"
+          value={f.name}
+          onChange={e => setF({ ...f, name: e.target.value })}
+          className="bg-white/5 border-white/10"
+        />
+      </div>
+      <div className="space-y-1.5">
+        <Label className="text-xs text-muted-foreground">Type</Label>
+        <Select value={f.type} onValueChange={v => setF({ ...f, type: v as AccountType })}>
+          <SelectTrigger className="bg-white/5 border-white/10">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="bg-[#111] border-white/10">
+            {ACCOUNT_TYPES.map(t => (
+              <SelectItem key={t} value={t}>{t}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-1.5">
+        <Label className="text-xs text-muted-foreground">Current Value (MYR)</Label>
+        <Input
+          type="number"
+          placeholder="0.00"
+          value={f.current_value}
+          onChange={e => setF({ ...f, current_value: e.target.value })}
+          className="bg-white/5 border-white/10"
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function NetWorthPage() {
   const supabase = createClient()
   const [accounts, setAccounts] = useState<Account[]>([])
@@ -173,43 +212,6 @@ export default function NetWorthPage() {
     month: s.month,
     value: s.total_value,
   }))
-
-  const AccountForm = ({ f, setF }: { f: typeof emptyForm; setF: (v: typeof emptyForm) => void }) => (
-    <div className="space-y-4">
-      <div className="space-y-1.5">
-        <Label className="text-xs text-muted-foreground">Account Name</Label>
-        <Input
-          placeholder="e.g. Maybank Savings"
-          value={f.name}
-          onChange={e => setF({ ...f, name: e.target.value })}
-          className="bg-white/5 border-white/10"
-        />
-      </div>
-      <div className="space-y-1.5">
-        <Label className="text-xs text-muted-foreground">Type</Label>
-        <Select value={f.type} onValueChange={v => setF({ ...f, type: v as AccountType })}>
-          <SelectTrigger className="bg-white/5 border-white/10">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent className="bg-[#111] border-white/10">
-            {ACCOUNT_TYPES.map(t => (
-              <SelectItem key={t} value={t}>{t}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-1.5">
-        <Label className="text-xs text-muted-foreground">Current Value (MYR)</Label>
-        <Input
-          type="number"
-          placeholder="0.00"
-          value={f.current_value}
-          onChange={e => setF({ ...f, current_value: e.target.value })}
-          className="bg-white/5 border-white/10"
-        />
-      </div>
-    </div>
-  )
 
   if (loading) {
     return (
