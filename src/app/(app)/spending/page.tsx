@@ -185,7 +185,7 @@ export default function SpendingPage() {
               Add
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-[#111] border-white/10 rounded-xl max-w-sm">
+          <DialogContent className="bg-[#0F0F0F] backdrop-blur-xl border-[#1F1F1F] rounded-xl max-w-sm">
             <DialogHeader>
               <DialogTitle>New Transaction</DialogTitle>
             </DialogHeader>
@@ -194,13 +194,13 @@ export default function SpendingPage() {
               <div className="flex gap-2">
                 <button
                   onClick={() => setForm(f => ({ ...f, type: 'expense' }))}
-                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${form.type === 'expense' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-white/5 text-muted-foreground border border-white/10'}`}
+                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${form.type === 'expense' ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-[#111111] text-[#A1A1AA] border border-[#1F1F1F]'}`}
                 >
                   Expense
                 </button>
                 <button
                   onClick={() => setForm(f => ({ ...f, type: 'income' }))}
-                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${form.type === 'income' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-white/5 text-muted-foreground border border-white/10'}`}
+                  className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${form.type === 'income' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-[#111111] text-[#A1A1AA] border border-[#1F1F1F]'}`}
                 >
                   Income
                 </button>
@@ -213,17 +213,17 @@ export default function SpendingPage() {
                   placeholder="0.00"
                   value={form.amount}
                   onChange={e => setForm(f => ({ ...f, amount: e.target.value }))}
-                  className="bg-white/5 border-white/10"
+                  className="bg-[#111111] border-[#1F1F1F] focus:border-[#333333]"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <Label className="text-xs text-muted-foreground">Category</Label>
                 <Select value={form.category} onValueChange={e => setForm(f => ({ ...f, category: e ?? '' }))}>
-                  <SelectTrigger className="bg-white/5 border-white/10">
+                  <SelectTrigger className="bg-[#111111] border-[#1F1F1F]">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#111] border-white/10">
+                  <SelectContent className="bg-[#0F0F0F] border-[#1F1F1F]">
                     {CATEGORIES.map(c => (
                       <SelectItem key={c} value={c}>{c}</SelectItem>
                     ))}
@@ -237,7 +237,7 @@ export default function SpendingPage() {
                   type="date"
                   value={form.date}
                   onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
-                  className="bg-white/5 border-white/10"
+                  className="bg-[#111111] border-[#1F1F1F] focus:border-[#333333]"
                 />
               </div>
 
@@ -247,7 +247,7 @@ export default function SpendingPage() {
                   placeholder="What was this for?"
                   value={form.note}
                   onChange={e => setForm(f => ({ ...f, note: e.target.value }))}
-                  className="bg-white/5 border-white/10 resize-none"
+                  className="bg-[#111111] border-[#1F1F1F] resize-none"
                   rows={2}
                 />
               </div>
@@ -265,7 +265,7 @@ export default function SpendingPage() {
       </div>
 
       <Tabs defaultValue="transactions">
-        <TabsList className="bg-white/5 border border-white/10">
+        <TabsList className="bg-[#111111] border border-[#1F1F1F]">
           <TabsTrigger value="transactions">Transactions</TabsTrigger>
           <TabsTrigger value="summary">Summary</TabsTrigger>
         </TabsList>
@@ -274,22 +274,22 @@ export default function SpendingPage() {
         <TabsContent value="transactions" className="space-y-4 mt-4">
           {/* Filters */}
           <div className="flex gap-2 flex-wrap">
-            <div className="flex gap-1 bg-white/5 rounded-lg p-1 border border-white/10">
+            <div className="flex gap-1 bg-[#111111] rounded-lg p-1 border border-[#1F1F1F]">
               {(['all', 'income', 'expense'] as const).map(t => (
                 <button
                   key={t}
                   onClick={() => setFilterType(t)}
-                  className={`px-3 py-1 rounded-md text-xs font-medium capitalize transition-colors ${filterType === t ? 'bg-white/10 text-white' : 'text-muted-foreground'}`}
+                  className={`px-3 py-1 rounded-md text-xs font-medium capitalize transition-colors ${filterType === t ? 'bg-[#1F1F1F] text-white' : 'text-muted-foreground'}`}
                 >
                   {t}
                 </button>
               ))}
             </div>
             <Select value={filterCategory} onValueChange={(value) => setFilterCategory(value ?? 'all')}>
-              <SelectTrigger className="bg-white/5 border-white/10 w-36 h-8 text-xs">
+              <SelectTrigger className="bg-[#111111] border-[#1F1F1F] w-36 h-8 text-xs">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
-              <SelectContent className="bg-[#111] border-white/10">
+              <SelectContent className="bg-[#0F0F0F] border-[#1F1F1F]">
                 <SelectItem value="all">All categories</SelectItem>
                 {CATEGORIES.map(c => (
                   <SelectItem key={c} value={c}>{c}</SelectItem>
@@ -300,7 +300,7 @@ export default function SpendingPage() {
 
           {/* Transaction List */}
           {sortedDates.length === 0 ? (
-            <div className="text-center py-16 text-muted-foreground">
+            <div className="flex flex-col items-center py-16 text-muted-foreground">
               <ArrowLeftRight className="w-8 h-8 mx-auto mb-3 opacity-30" />
               <p className="text-sm">No transactions this month</p>
               <p className="text-xs mt-1 opacity-60">Tap + Add to record your first one</p>
@@ -316,7 +316,7 @@ export default function SpendingPage() {
                     {grouped[date].map(tx => (
                       <div
                         key={tx.id}
-                        className="flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/[0.07] transition-colors group"
+                        className="flex items-center justify-between px-4 py-3 rounded-xl bg-[#111111] border border-[#1F1F1F] hover:bg-[#1A1A1A] hover:border-[#2A2A2A] transition-colors group"
                       >
                         <div className="flex items-center gap-3">
                           <span
@@ -329,7 +329,7 @@ export default function SpendingPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <p className={`text-sm font-semibold ${tx.type === 'income' ? 'text-green-400' : 'text-red-400'}`}>
+                          <p className={`text-sm font-semibold ${tx.type === 'income' ? 'text-emerald-400' : 'text-rose-400'}`}>
                             {tx.type === 'income' ? '+' : '-'}{formatMYR(tx.amount)}
                           </p>
                           <button
@@ -352,26 +352,26 @@ export default function SpendingPage() {
         <TabsContent value="summary" className="space-y-4 mt-4">
           {/* Totals */}
           <div className="grid grid-cols-3 gap-3">
-            <Card className="bg-white/5 border-white/10 rounded-xl">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
               <CardContent className="pt-4 pb-4">
                 <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
-                  <TrendingUp className="w-3 h-3 text-green-400" /> Income
+                  <TrendingUp className="w-3 h-3 text-emerald-400" /> Income
                 </p>
-                <p className="text-base font-semibold text-green-400">{formatMYR(totalIncome)}</p>
+                <p className="text-base font-semibold text-emerald-400">{formatMYR(totalIncome)}</p>
               </CardContent>
             </Card>
-            <Card className="bg-white/5 border-white/10 rounded-xl">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
               <CardContent className="pt-4 pb-4">
                 <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
-                  <TrendingDown className="w-3 h-3 text-red-400" /> Expenses
+                  <TrendingDown className="w-3 h-3 text-rose-400" /> Expenses
                 </p>
-                <p className="text-base font-semibold text-red-400">{formatMYR(totalExpense)}</p>
+                <p className="text-base font-semibold text-rose-400">{formatMYR(totalExpense)}</p>
               </CardContent>
             </Card>
-            <Card className="bg-white/5 border-white/10 rounded-xl">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
               <CardContent className="pt-4 pb-4">
                 <p className="text-xs text-muted-foreground mb-1">Net Flow</p>
-                <p className={`text-base font-semibold ${netCashFlow >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                <p className={`text-base font-semibold ${netCashFlow >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                   {formatMYR(netCashFlow)}
                 </p>
               </CardContent>
@@ -379,7 +379,7 @@ export default function SpendingPage() {
           </div>
 
           {/* Budget Progress */}
-          <Card className="bg-white/5 border-white/10 rounded-xl">
+          <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center justify-between">
                 <span>Monthly Budget</span>
@@ -390,7 +390,7 @@ export default function SpendingPage() {
                     value={budgetInput}
                     onChange={e => setBudgetInput(e.target.value)}
                     onBlur={() => setMonthlyBudget(parseFloat(budgetInput) || 3000)}
-                    className="w-24 h-6 text-xs bg-white/5 border-white/10 py-0"
+                    className="w-24 h-6 text-xs bg-[#111111] border-[#1F1F1F] py-0"
                   />
                 </div>
               </CardTitle>
@@ -399,16 +399,16 @@ export default function SpendingPage() {
               <div className="space-y-2">
                 <Progress
                   value={budgetProgress}
-                  className={`h-2 ${budgetProgress > 80 ? '[&>div]:bg-red-500' : '[&>div]:bg-green-500'}`}
+                  className={`h-2 ${budgetProgress > 80 ? '[&>div]:bg-rose-500' : '[&>div]:bg-emerald-500'}`}
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>{formatMYR(totalExpense)} spent</span>
-                  <span className={budgetProgress > 80 ? 'text-red-400' : ''}>
+                  <span className={budgetProgress > 80 ? 'text-rose-400' : ''}>
                     {budgetProgress.toFixed(0)}% of {formatMYR(monthlyBudget)}
                   </span>
                 </div>
                 {budgetProgress > 80 && (
-                  <p className="text-xs text-red-400">⚠ Over 80% of monthly budget</p>
+                  <p className="text-xs text-rose-400">⚠ Over 80% of monthly budget</p>
                 )}
               </div>
             </CardContent>
@@ -416,7 +416,7 @@ export default function SpendingPage() {
 
           {/* Category Chart */}
           {categoryData.length > 0 && (
-            <Card className="bg-white/5 border-white/10 rounded-xl">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">Spending by Category</CardTitle>
               </CardHeader>
@@ -431,7 +431,7 @@ export default function SpendingPage() {
                     />
                     <YAxis hide />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12 }}
+                      contentStyle={{ backgroundColor: '#0F0F0F', border: '1px solid #1F1F1F', borderRadius: 8, fontSize: 12 }}
                       formatter={(value) => {
                         const num = typeof value === 'number' ? value : Number(value)
                         return [isNaN(num) ? 'RM 0.00' : `RM ${num.toLocaleString('en-MY', { minimumFractionDigits: 2 })}`, ''] as [string, string]

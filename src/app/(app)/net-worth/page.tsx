@@ -76,16 +76,16 @@ function AccountForm({ f, setF }: { f: typeof emptyForm; setF: (v: typeof emptyF
           placeholder="e.g. Maybank Savings"
           value={f.name}
           onChange={e => setF({ ...f, name: e.target.value })}
-          className="bg-white/5 border-white/10"
+          className="bg-[#111111] border-[#1F1F1F] focus:border-[#333333]"
         />
       </div>
       <div className="space-y-1.5">
         <Label className="text-xs text-muted-foreground">Type</Label>
         <Select value={f.type} onValueChange={v => setF({ ...f, type: v as AccountType })}>
-          <SelectTrigger className="bg-white/5 border-white/10">
+          <SelectTrigger className="bg-[#111111] border-[#1F1F1F] focus:border-[#333333]">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="bg-[#111] border-white/10">
+          <SelectContent className="bg-[#0F0F0F] border-[#1F1F1F]">
             {ACCOUNT_TYPES.map(t => (
               <SelectItem key={t} value={t}>{t}</SelectItem>
             ))}
@@ -99,7 +99,7 @@ function AccountForm({ f, setF }: { f: typeof emptyForm; setF: (v: typeof emptyF
           placeholder="0.00"
           value={f.current_value}
           onChange={e => setF({ ...f, current_value: e.target.value })}
-          className="bg-white/5 border-white/10"
+          className="bg-[#111111] border-[#1F1F1F] focus:border-[#333333]"
         />
       </div>
     </div>
@@ -236,7 +236,7 @@ export default function NetWorthPage() {
               Add Account
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-[#111] border-white/10 rounded-xl max-w-sm">
+          <DialogContent className="bg-[#0F0F0F] backdrop-blur-xl border-[#1F1F1F] rounded-xl max-w-sm">
             <DialogHeader>
               <DialogTitle>New Account</DialogTitle>
             </DialogHeader>
@@ -255,7 +255,7 @@ export default function NetWorthPage() {
       </div>
 
       {/* Total Net Worth */}
-      <Card className="bg-white/5 border-white/10 rounded-xl">
+      <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
         <CardContent className="pt-6 pb-6">
           <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">Total Net Worth</p>
           <p className="text-4xl font-bold">{formatMYR(totalNetWorth)}</p>
@@ -273,13 +273,13 @@ export default function NetWorthPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {accounts.map(acc => (
-            <Card key={acc.id} className="bg-white/5 border-white/10 rounded-xl group">
+            <Card key={acc.id} className="bg-[#111111] border-[#1F1F1F] rounded-xl group hover:border-[#2A2A2A] transition-all duration-200">
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-start justify-between mb-3">
                   <Badge className={`text-xs border ${TYPE_COLORS[acc.type] || TYPE_COLORS.Others}`}>
                     {acc.type}
                   </Badge>
-                  <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
                     <button
                       onClick={() => openEdit(acc)}
                       className="text-muted-foreground hover:text-white transition-colors p-1"
@@ -307,7 +307,7 @@ export default function NetWorthPage() {
 
       {/* Edit Dialog */}
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
-        <DialogContent className="bg-[#111] border-white/10 rounded-xl max-w-sm">
+        <DialogContent className="bg-[#0F0F0F] backdrop-blur-xl border-[#1F1F1F] rounded-xl max-w-sm">
           <DialogHeader>
             <DialogTitle>Edit Account</DialogTitle>
           </DialogHeader>
@@ -327,15 +327,15 @@ export default function NetWorthPage() {
       {/* History Chart */}
       {chartData.length > 1 && (
         <>
-          <Separator className="bg-white/10" />
-          <Card className="bg-white/5 border-white/10 rounded-xl">
+          <Separator className="bg-[#1F1F1F]" />
+          <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Net Worth History</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={220}>
                 <LineChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1F1F1F" />
                   <XAxis
                     dataKey="month"
                     tick={{ fontSize: 11, fill: '#888' }}
@@ -350,7 +350,7 @@ export default function NetWorthPage() {
                     width={55}
                   />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12 }}
+                    contentStyle={{ backgroundColor: '#0F0F0F', border: '1px solid #1F1F1F', borderRadius: 8, fontSize: 12 }}
                     formatter={(value) => {
                       const num = typeof value === 'number' ? value : Number(value)
                       return [isNaN(num) ? 'RM 0.00' : `RM ${num.toLocaleString('en-MY', { minimumFractionDigits: 2 })}`, ''] as [string, string]

@@ -25,9 +25,9 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="hidden md:flex flex-col w-56 min-h-screen bg-card border-r border-border px-3 py-6 fixed top-0 left-0 z-40">
+    <aside className="hidden md:flex flex-col w-56 min-h-screen bg-[#0A0A0A] border-r border-[#1F1F1F] px-3 py-6 fixed top-0 left-0 z-40">
       <div className="flex items-center gap-2.5 px-3 mb-8">
-        <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+        <div className="w-7 h-7 rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] flex items-center justify-center">
           <TrendingUp className="w-4 h-4 text-white" />
         </div>
         <span className="text-sm font-semibold text-foreground">Finance</span>
@@ -43,8 +43,8 @@ export function Sidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors',
                 active
-                  ? 'bg-white/10 text-white font-medium'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
+                  ? 'bg-[#1A1A1A] text-white font-medium border border-[#2A2A2A]'
+                  : 'text-muted-foreground hover:text-white hover:bg-[#141414]'
               )}
             >
               <Icon className="w-4 h-4" />
@@ -56,7 +56,7 @@ export function Sidebar() {
 
       <button
         onClick={signOut}
-        className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+        className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-white hover:bg-[#141414] transition-colors"
       >
         <LogOut className="w-4 h-4" />
         Sign out
@@ -69,7 +69,7 @@ export function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border px-2 py-2 flex justify-around">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0A0A0A] border-t border-[#1F1F1F] px-2 py-2 flex justify-around">
       {navItems.map(({ href, label, icon: Icon }) => {
         const active = pathname === href
         return (

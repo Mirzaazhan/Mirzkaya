@@ -269,15 +269,15 @@ export default function TradingPage() {
   // Setup screen
   if (!config) {
     return (
-      <div className="p-6 max-w-md mx-auto flex flex-col items-center justify-center min-h-[70vh] space-y-6">
+      <div className="p-6 max-w-sm mx-auto flex flex-col items-center justify-center min-h-[80vh] space-y-6">
         <div className="text-center">
-          <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4">
+          <div className="w-14 h-14 rounded-2xl bg-[#1A1A1A] border border-[#2A2A2A] flex items-center justify-center mx-auto mb-4">
             <TrendingUp className="w-7 h-7 text-orange-400" />
           </div>
           <h1 className="text-2xl font-semibold">Set Up Trading Journal</h1>
           <p className="text-sm text-muted-foreground mt-2">Enter your starting balance to begin tracking your trades.</p>
         </div>
-        <Card className="w-full bg-white/5 border-white/10 rounded-xl">
+        <Card className="w-full bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardContent className="pt-5 pb-5 space-y-4">
             <div className="space-y-1.5">
               <Label className="text-xs text-muted-foreground">Starting Balance (USD)</Label>
@@ -286,7 +286,7 @@ export default function TradingPage() {
                 placeholder="e.g. 1000.00"
                 value={startingBalanceInput}
                 onChange={e => setStartingBalanceInput(e.target.value)}
-                className="bg-white/5 border-white/10 text-lg"
+                className="bg-[#111111] border-[#1F1F1F] text-lg"
               />
             </div>
             <Button
@@ -312,32 +312,32 @@ export default function TradingPage() {
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardContent className="pt-4 pb-4">
             <p className="text-xs text-muted-foreground mb-1">Current Balance</p>
-            <p className="text-xl font-semibold">{formatUSD(currentBalance)}</p>
+            <p className="text-xl font-bold text-[#F5F5F5]">{formatUSD(currentBalance)}</p>
           </CardContent>
         </Card>
-        <Card className={`border-white/10 rounded-xl ${totalPnL >= 0 ? 'bg-green-500/5' : 'bg-red-500/5'}`}>
+        <Card className={`border-[#1F1F1F] rounded-xl transition-all duration-200 ${totalPnL >= 0 ? 'bg-emerald-500/5' : 'bg-rose-500/5'}`}>
           <CardContent className="pt-4 pb-4">
             <p className="text-xs text-muted-foreground mb-1">Total P&L</p>
-            <p className={`text-xl font-semibold ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+            <p className={`text-xl font-bold ${totalPnL >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
               {totalPnL >= 0 ? '+' : ''}{formatUSD(totalPnL)}
             </p>
           </CardContent>
         </Card>
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardContent className="pt-4 pb-4">
             <p className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
               <Flame className="w-3 h-3 text-orange-400" /> Streak
             </p>
-            <p className="text-xl font-semibold">{streak} day{streak !== 1 ? 's' : ''}</p>
+            <p className="text-xl font-bold text-[#F5F5F5]">{streak} day{streak !== 1 ? 's' : ''}</p>
           </CardContent>
         </Card>
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardContent className="pt-4 pb-4">
             <p className="text-xs text-muted-foreground mb-1">Starting Balance</p>
-            <p className="text-xl font-semibold">{formatUSD(config.starting_balance)}</p>
+            <p className="text-xl font-bold text-[#F5F5F5]">{formatUSD(config.starting_balance)}</p>
           </CardContent>
         </Card>
       </div>
@@ -345,7 +345,7 @@ export default function TradingPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Calendar */}
         <div className="lg:col-span-2">
-          <Card className="bg-white/5 border-white/10 rounded-xl">
+          <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm">
@@ -354,13 +354,13 @@ export default function TradingPage() {
                 <div className="flex gap-1">
                   <button
                     onClick={prevMonth}
-                    className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+                    className="w-7 h-7 rounded-lg bg-[#111111] border border-[#1F1F1F] hover:bg-[#1A1A1A] hover:border-[#2A2A2A] flex items-center justify-center transition-colors"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={nextMonth}
-                    className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+                    className="w-7 h-7 rounded-lg bg-[#111111] border border-[#1F1F1F] hover:bg-[#1A1A1A] hover:border-[#2A2A2A] flex items-center justify-center transition-colors"
                   >
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
@@ -393,15 +393,15 @@ export default function TradingPage() {
                       disabled={!isPast}
                       className={`
                         relative flex flex-col items-center justify-center rounded-lg py-2.5 text-xs transition-colors
-                        ${isPast ? 'hover:bg-white/10 cursor-pointer' : 'opacity-30 cursor-default'}
-                        ${isToday ? 'ring-1 ring-white/30' : ''}
+                        ${isPast ? 'cursor-pointer' : 'opacity-30 cursor-default'}
+                        ${isToday ? 'ring-1 ring-[#444444]' : ''}
                         ${entry
                           ? pnl !== null && pnl > 0
-                            ? 'bg-green-500/10 border border-green-500/20'
+                            ? 'bg-emerald-500/[0.08] border border-emerald-500/15 hover:bg-emerald-500/[0.12]'
                             : pnl !== null && pnl < 0
-                              ? 'bg-red-500/10 border border-red-500/20'
-                              : 'bg-white/5 border border-white/10'
-                          : 'bg-white/[0.02] border border-white/5'
+                              ? 'bg-rose-500/[0.08] border border-rose-500/15 hover:bg-rose-500/[0.12]'
+                              : 'bg-[#111111] border border-[#1F1F1F] hover:bg-[#161616] hover:border-[#282828]'
+                          : 'bg-[#0D0D0D] border border-[#181818] hover:bg-[#161616] hover:border-[#282828]'
                         }
                       `}
                     >
@@ -409,7 +409,7 @@ export default function TradingPage() {
                         {date.getDate()}
                       </span>
                       {entry && pnl !== null ? (
-                        <span className={`text-[10px] font-semibold mt-0.5 ${pnl > 0 ? 'text-green-400' : pnl < 0 ? 'text-red-400' : 'text-muted-foreground'}`}>
+                        <span className={`text-[10px] font-semibold mt-0.5 ${pnl > 0 ? 'text-emerald-400' : pnl < 0 ? 'text-rose-400' : 'text-muted-foreground'}`}>
                           {pnl > 0 ? '+' : ''}{pnl.toFixed(0)}
                         </span>
                       ) : isPast ? (
@@ -425,44 +425,44 @@ export default function TradingPage() {
 
         {/* Monthly Summary */}
         <div className="space-y-3">
-          <Card className="bg-white/5 border-white/10 rounded-xl">
+          <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">This Month</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center justify-between">
                 <p className="text-xs text-muted-foreground">Total P&L</p>
-                <p className={`text-sm font-semibold ${monthPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                <p className={`text-sm font-semibold ${monthPnL >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                   {monthPnL >= 0 ? '+' : ''}{formatUSD(monthPnL)}
                 </p>
               </div>
-              <Separator className="bg-white/10" />
+              <Separator className="bg-[#1F1F1F]" />
               <div className="flex items-center justify-between">
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                   <Target className="w-3 h-3" /> Win Rate
                 </p>
                 <p className="text-sm font-semibold">{winRate.toFixed(0)}%</p>
               </div>
-              <Separator className="bg-white/10" />
+              <Separator className="bg-[#1F1F1F]" />
               <div className="flex items-center justify-between">
                 <p className="text-xs text-muted-foreground">Days Traded</p>
                 <p className="text-sm font-semibold">{monthEntries.length}</p>
               </div>
-              <Separator className="bg-white/10" />
+              <Separator className="bg-[#1F1F1F]" />
               <div className="flex items-center justify-between">
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3 text-green-400" /> Best Day
+                  <TrendingUp className="w-3 h-3 text-emerald-400" /> Best Day
                 </p>
-                <p className="text-sm font-semibold text-green-400">
+                <p className="text-sm font-semibold text-emerald-400">
                   {monthEntries.length > 0 ? `+${formatUSD(bestDay)}` : '—'}
                 </p>
               </div>
-              <Separator className="bg-white/10" />
+              <Separator className="bg-[#1F1F1F]" />
               <div className="flex items-center justify-between">
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
-                  <TrendingDown className="w-3 h-3 text-red-400" /> Worst Day
+                  <TrendingDown className="w-3 h-3 text-rose-400" /> Worst Day
                 </p>
-                <p className="text-sm font-semibold text-red-400">
+                <p className="text-sm font-semibold text-rose-400">
                   {monthEntries.length > 0 ? formatUSD(worstDay) : '—'}
                 </p>
               </div>
@@ -471,7 +471,7 @@ export default function TradingPage() {
 
           {/* Recent Entries */}
           {entries.length > 0 && (
-            <Card className="bg-white/5 border-white/10 rounded-xl">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">Recent</CardTitle>
               </CardHeader>
@@ -482,7 +482,7 @@ export default function TradingPage() {
                       <p className="text-xs font-medium">{new Date(e.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
                       {e.strategy_tag && <p className="text-[10px] text-muted-foreground">{e.strategy_tag}</p>}
                     </div>
-                    <p className={`text-xs font-semibold ${(e.pnl || 0) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    <p className={`text-xs font-semibold ${(e.pnl || 0) >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                       {(e.pnl || 0) >= 0 ? '+' : ''}{formatUSD(e.pnl || 0)}
                     </p>
                   </div>
@@ -495,7 +495,7 @@ export default function TradingPage() {
 
       {/* Entry Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="bg-[#111] border-white/10 rounded-xl max-w-sm">
+        <DialogContent className="bg-[#0F0F0F] backdrop-blur-xl border-[#1F1F1F] rounded-xl max-w-sm">
           <DialogHeader>
             <DialogTitle>
               {selectedDate
@@ -505,7 +505,7 @@ export default function TradingPage() {
           </DialogHeader>
           <div className="space-y-4 mt-2">
             {entryMap[selectedDate || ''] && (
-              <div className={`px-3 py-2 rounded-lg text-xs font-medium ${(entryMap[selectedDate!]?.pnl || 0) >= 0 ? 'bg-green-500/10 text-green-400' : 'bg-red-500/10 text-red-400'}`}>
+              <div className={`px-3 py-2 rounded-lg text-xs font-medium ${(entryMap[selectedDate!]?.pnl || 0) >= 0 ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}`}>
                 Recorded P&L: {(entryMap[selectedDate!]?.pnl || 0) >= 0 ? '+' : ''}{formatUSD(entryMap[selectedDate!]?.pnl || 0)}
               </div>
             )}
@@ -516,7 +516,7 @@ export default function TradingPage() {
                 placeholder="e.g. 1050.00"
                 value={entryForm.closing_balance}
                 onChange={e => setEntryForm(f => ({ ...f, closing_balance: e.target.value }))}
-                className="bg-white/5 border-white/10"
+                className="bg-[#111111] border-[#1F1F1F]"
               />
             </div>
             <div className="space-y-1.5">
@@ -526,7 +526,7 @@ export default function TradingPage() {
                 placeholder="Optional"
                 value={entryForm.num_trades}
                 onChange={e => setEntryForm(f => ({ ...f, num_trades: e.target.value }))}
-                className="bg-white/5 border-white/10"
+                className="bg-[#111111] border-[#1F1F1F]"
               />
             </div>
             <div className="space-y-1.5">
@@ -535,7 +535,7 @@ export default function TradingPage() {
                 placeholder="e.g. Breakout, Scalp, Swing"
                 value={entryForm.strategy_tag}
                 onChange={e => setEntryForm(f => ({ ...f, strategy_tag: e.target.value }))}
-                className="bg-white/5 border-white/10"
+                className="bg-[#111111] border-[#1F1F1F]"
               />
             </div>
             <div className="space-y-1.5">
@@ -544,7 +544,7 @@ export default function TradingPage() {
                 placeholder="How did the session go?"
                 value={entryForm.notes}
                 onChange={e => setEntryForm(f => ({ ...f, notes: e.target.value }))}
-                className="bg-white/5 border-white/10 resize-none"
+                className="bg-[#111111] border-[#1F1F1F] resize-none"
                 rows={3}
               />
             </div>

@@ -110,19 +110,19 @@ export default function DashboardPage() {
     <div className="p-6 max-w-5xl mx-auto space-y-8">
       {/* Header */}
       <div>
-        <p className="text-sm text-muted-foreground mb-1">{getGreeting()},</p>
-        <h1 className="text-3xl font-semibold capitalize">{userName}</h1>
-        <p className="text-sm text-muted-foreground mt-1">
+        <p className="text-sm text-[#A1A1AA] mb-1">{getGreeting()},</p>
+        <h1 className="text-3xl font-bold text-[#F5F5F5] capitalize tracking-tight">{userName}</h1>
+        <p className="text-sm text-[#A1A1AA] mt-1">
           {new Date().toLocaleDateString('en-MY', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
       </div>
 
-      <Separator className="bg-white/10" />
+      <Separator className="bg-[#1F1F1F]" />
 
       {/* Primary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Net Worth */}
-        <Card className="bg-white/5 border-white/10 rounded-xl col-span-1 md:col-span-1">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl col-span-1 md:col-span-1 transition-all duration-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs text-muted-foreground font-medium flex items-center gap-2">
               <Wallet className="w-3.5 h-3.5" />
@@ -130,13 +130,13 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-semibold">{formatMYR(netWorth)}</p>
+            <p className="text-2xl font-bold text-[#F5F5F5]">{formatMYR(netWorth)}</p>
             <p className="text-xs text-muted-foreground mt-1">{accountCount} account{accountCount !== 1 ? 's' : ''} tracked</p>
           </CardContent>
         </Card>
 
         {/* Monthly Spending */}
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs text-muted-foreground font-medium flex items-center gap-2">
               <BarChart3 className="w-3.5 h-3.5" />
@@ -144,13 +144,13 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-semibold text-red-400">{formatMYR(monthlySpending)}</p>
+            <p className="text-2xl font-bold text-rose-400">{formatMYR(monthlySpending)}</p>
             <p className="text-xs text-muted-foreground mt-1">spent · {transactionCount} transactions</p>
           </CardContent>
         </Card>
 
         {/* Trading */}
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs text-muted-foreground font-medium flex items-center gap-2">
               <TrendingUp className="w-3.5 h-3.5" />
@@ -160,9 +160,9 @@ export default function DashboardPage() {
           <CardContent>
             {tradingBalance !== null ? (
               <>
-                <p className="text-2xl font-semibold">{formatUSD(tradingBalance)}</p>
+                <p className="text-2xl font-bold text-[#F5F5F5]">{formatUSD(tradingBalance)}</p>
                 {todayPnL !== null && (
-                  <p className={`text-xs mt-1 flex items-center gap-1 ${todayPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  <p className={`text-xs mt-1 flex items-center gap-1 ${todayPnL >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                     {todayPnL >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                     Last entry P&L: {formatUSD(todayPnL)}
                   </p>
@@ -180,31 +180,31 @@ export default function DashboardPage() {
 
       {/* Cash Flow */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs text-muted-foreground font-medium flex items-center gap-2">
-              <ArrowUpRight className="w-3.5 h-3.5 text-green-400" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
               INCOME (MTD)
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-xl font-semibold text-green-400">{formatMYR(monthlyIncome)}</p>
+            <p className="text-xl font-semibold text-emerald-400">{formatMYR(monthlyIncome)}</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs text-muted-foreground font-medium flex items-center gap-2">
-              <ArrowDownRight className="w-3.5 h-3.5 text-red-400" />
+              <ArrowDownRight className="w-3.5 h-3.5 text-rose-400" />
               EXPENSES (MTD)
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-xl font-semibold text-red-400">{formatMYR(monthlySpending)}</p>
+            <p className="text-xl font-semibold text-rose-400">{formatMYR(monthlySpending)}</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-white/5 border-white/10 rounded-xl">
+        <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl transition-all duration-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs text-muted-foreground font-medium flex items-center gap-2">
               <DollarSign className="w-3.5 h-3.5" />
@@ -212,7 +212,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className={`text-xl font-semibold ${netCashFlow >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+            <p className={`text-xl font-semibold ${netCashFlow >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
               {formatMYR(netCashFlow)}
             </p>
           </CardContent>
@@ -221,13 +221,13 @@ export default function DashboardPage() {
 
       {/* Module Quick Links */}
       <div>
-        <p className="text-xs text-muted-foreground uppercase tracking-widest mb-4">Modules</p>
+        <p className="text-xs text-[#A1A1AA] uppercase tracking-widest text-xs font-medium mb-4">Modules</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a href="/spending">
-            <Card className="bg-white/5 border-white/10 rounded-xl hover:bg-white/10 transition-colors cursor-pointer h-full">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl hover:bg-[#1A1A1A] hover:border-[#2A2A2A] transition-all duration-200 cursor-pointer h-full group">
               <CardContent className="pt-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                     <BarChart3 className="w-4.5 h-4.5 text-blue-400" />
                   </div>
                   <div>
@@ -239,11 +239,11 @@ export default function DashboardPage() {
             </Card>
           </a>
           <a href="/net-worth">
-            <Card className="bg-white/5 border-white/10 rounded-xl hover:bg-white/10 transition-colors cursor-pointer h-full">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl hover:bg-[#1A1A1A] hover:border-[#2A2A2A] transition-all duration-200 cursor-pointer h-full group">
               <CardContent className="pt-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center">
-                    <Wallet className="w-4.5 h-4.5 text-green-400" />
+                  <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                    <Wallet className="w-4.5 h-4.5 text-emerald-400" />
                   </div>
                   <div>
                     <p className="font-medium text-sm">Net Worth</p>
@@ -254,10 +254,10 @@ export default function DashboardPage() {
             </Card>
           </a>
           <a href="/trading">
-            <Card className="bg-white/5 border-white/10 rounded-xl hover:bg-white/10 transition-colors cursor-pointer h-full">
+            <Card className="bg-[#111111] border-[#1F1F1F] rounded-xl hover:bg-[#1A1A1A] hover:border-[#2A2A2A] transition-all duration-200 cursor-pointer h-full group">
               <CardContent className="pt-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-orange-500/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                     <TrendingUp className="w-4.5 h-4.5 text-orange-400" />
                   </div>
                   <div>
